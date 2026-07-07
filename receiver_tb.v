@@ -2,7 +2,7 @@
 
 module reciever_tb;
     reg clk = 0;
-    reg rx = 1;          // idle high, this replaces your initial statement
+    reg rx = 1;          // idle high
     wire [7:0] led;
 
     reciever dut (.clk_25mhz(clk), .ftdi_txd(rx), .led(led));
@@ -15,7 +15,7 @@ module reciever_tb;
         begin
             rx = 0; #8680;                     // start bit
             for (i = 0; i < 8; i = i + 1) begin
-                rx = b[i]; #8680;              // LSB first, matches your right shift
+                rx = b[i]; #8680;              // LSB first
             end
             rx = 1; #8680;                     // stop bit
         end
